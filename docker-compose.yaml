@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+
+  db:
+    container_name: mta-pay-db
+    image: postgres
+    restart: always
+    hostname: db
+    environment:
+      GET_HOST_FROM: dns
+      POSTGRES_DB: dev
+      POSTGRES_USER: user
+      POSTGRES_PASWORD: password
+    ports:
+      - 5432:5432
+    networks:
+      - mta-pay-net
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  aedibus-auth-api:
+    container_name: mta-pay-auth-api
+    image: escott07/mta-pay-auth-api:latest
+    hostname: mta-pay
+    build:
+      context: .
+      dockerfile: auth/Dockerfile
+    environment:
+      GET_HOSTS_FROM: dns
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_MIGRATIONS: file:///app/migrations
+    networks:
+      - mta-pay-net
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    links:
+      - db
+    labels:
+      kompose.service.type: LoadBalancer
+
+  aedibus-payments-api:
+    container_name: mta-pay-payments-api
+    image: escott07/mta-pay-payments-api:latest
+    hostname: mta-pay
+    build:
+      context: .
+      dockerfile: payments/Dockerfile
+    environment:
+      GET_HOSTS_FROM: dns
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_MIGRATIONS: file:///app/migrations
+    networks:
+      - mta-pay-net
+    ports:
+      - 9090:9090
+    depends_on:
+      - db
+    links:
+      - db
+    labels:
+      kompose.service.type: LoadBalancer
+
+networks:
+  mta-pay-net:
+    driver: bridge
