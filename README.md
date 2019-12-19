@@ -1,5 +1,5 @@
 # MtA-Pay API
-API for handling payment records for MountA Clubs
+API for handling payment records for the MountA University Club
 
 ## Local testing
 ### Requirements
