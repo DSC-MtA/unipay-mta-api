@@ -1,16 +1,6 @@
 require('dotenv').config();
 
 const Config = {
-    publicKey: process.env.PUBLIC_KEY,
-    privateKey: process.env.PRIVATE_KEY,
-    signOptions: {
-        expiresIn: '12h',
-        algorithm: 'RS256'
-    },
-    verifyOptions: {
-        expiresIn: '12h',
-        algorithm: ['RS256']
-    },
     AccessControl(req, res, next) {
         res.header('Access-Control-Allow-Origin', '*');
         res.header(
