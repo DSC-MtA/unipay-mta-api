@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  db:
+  pay-mta-db:
     container_name: mta-pay-db
     image: postgres
     restart: always
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 
-  aedibus-auth-api:
+  pay-mta-auth-api:
     container_name: mta-pay-auth-api
     image: escott07/mta-pay-auth-api:latest
     hostname: mta-pay
@@ -44,7 +44,7 @@ services:
     labels:
       kompose.service.type: LoadBalancer
 
-  aedibus-payments-api:
+  pay-mta-payments-api:
     container_name: mta-pay-payments-api
     image: escott07/mta-pay-payments-api:latest
     hostname: mta-pay
