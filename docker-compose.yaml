@@ -6,7 +6,7 @@ services:
     container_name: mta-pay-db
     image: postgres
     restart: always
-    hostname: db
+    hostname: mta-pay
     environment:
       GET_HOST_FROM: dns
       POSTGRES_DB: dev
@@ -24,8 +24,8 @@ services:
     image: escott07/mta-pay-auth-api:latest
     hostname: mta-pay
     build:
-      context: .
-      dockerfile: auth/Dockerfile
+      context: auth/
+      dockerfile: Dockerfile
     environment:
       GET_HOSTS_FROM: dns
       DB_HOST: db
@@ -38,9 +38,9 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - db
+      - pay-mta-db
     links:
-      - db
+      - pay-mta-db
     labels:
       kompose.service.type: LoadBalancer
 
@@ -49,8 +49,8 @@ services:
     image: escott07/mta-pay-payments-api:latest
     hostname: mta-pay
     build:
-      context: .
-      dockerfile: payments/Dockerfile
+      context: payments/
+      dockerfile: Dockerfile
     environment:
       GET_HOSTS_FROM: dns
       DB_HOST: db
@@ -63,9 +63,9 @@ services:
     ports:
       - 9090:9090
     depends_on:
-      - db
+      - pay-mta-db
     links:
-      - db
+      - pay-mta-db
     labels:
       kompose.service.type: LoadBalancer
 

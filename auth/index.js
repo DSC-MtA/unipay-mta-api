@@ -8,5 +8,5 @@ app.get('/', (req, res) => {
     res.send('hello auth');
 });
 
-app.listen(PORT, HOST);
+app.listen(PORT);
 console.log(`auth-api listening on ${PORT}...`);
