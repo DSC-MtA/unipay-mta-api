@@ -8,5 +8,5 @@ app.get('/', (req, res) => {
     res.send('hello payments');
 });
 
-app.listen(PORT, HOST);
+app.listen(PORT);
 console.log(`payments-api listening on ${PORT}...`);
