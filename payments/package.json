@@ -1,0 +1,14 @@
+{
+  "name": "pay-mta-payments-api",
+  "version": "0.0.1",
+  "description": "payments api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Eliot Scott",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
