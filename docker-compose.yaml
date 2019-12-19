@@ -47,7 +47,7 @@ services:
   aedibus-payments-api:
     container_name: mta-pay-payments-api
     image: escott07/mta-pay-payments-api:latest
-    hostname: z3
+    hostname: mta-pay
     build:
       context: .
       dockerfile: payments/Dockerfile
