@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  pay-mta-db:
+  mta-pay-db:
     container_name: mta-pay-db
     image: postgres
     restart: always
@@ -17,7 +17,7 @@ services:
     networks:
       - mta-pay-net
 
-  pay-mta-auth-api:
+  mta-pay-auth-api:
     container_name: mta-pay-auth-api
     image: escott07/mta-pay-auth-api:latest
     hostname: mta-pay-api
@@ -30,19 +30,20 @@ services:
       PGPORT: 5432
       PGUSER: user
       PGPASSWORD: password
+      PGDATABASE: dev
       MIGRATIONS: file:///app/migrations
     networks:
       - mta-pay-net
     ports:
       - 8080:8080
     depends_on:
-      - pay-mta-db
+      - mta-pay-db
     links:
-      - pay-mta-db
+      - mta-pay-db
     labels:
       kompose.service.type: LoadBalancer
 
-  pay-mta-payments-api:
+  mta-pay-payments-api:
     container_name: mta-pay-payments-api
     image: escott07/mta-pay-payments-api:latest
     hostname: mta-pay-api
@@ -55,15 +56,16 @@ services:
       PGPORT: 5432
       PGUSER: user
       PGPASSWORD: password
+      PGDATABASE: dev
       MIGRATIONS: file:///app/migrations
     networks:
       - mta-pay-net
     ports:
       - 9090:9090
     depends_on:
-      - pay-mta-db
+      - mta-pay-db
     links:
-      - pay-mta-db
+      - mta-pay-db
     labels:
       kompose.service.type: LoadBalancer
 
