@@ -22,15 +22,15 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', '../k8s/' ]
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
 
   #### update images in GKE
   ## auth-api
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [ 'set', 'image','deployment','auth-api','auth-api=gcr.io/$PROJECT_ID/auth-api:latest' ]
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
   images: [
     'gcr.io/$PROJECT_ID/auth-api:latest'
   ]
@@ -38,8 +38,8 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
       args: [ 'set', 'image','deployment','payments-api','payments-api=gcr.io/$PROJECT_ID/payments-api:latest' ]
       env:
-        - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-        - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
   images: [
     'gcr.io/$PROJECT_ID/payments-api:latest'
   ]
