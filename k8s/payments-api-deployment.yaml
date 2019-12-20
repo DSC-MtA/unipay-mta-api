@@ -38,4 +38,17 @@ spec:
     - type: Resource
       resource:
         name: cpu
-        targetAverageUtilization: 80
+        targetAverageUtilization: 90
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-api-loadbalancer
+spec:
+  selector:
+    app: payments-api
+  ports:
+    - port: 9090
+      targetPort: 90
+  type: LoadBalancer
