@@ -7,6 +7,6 @@ steps:
     - --location=us-central1-a
     - --cluster=pay-mta
     - run
-    - --filename=k8s/auth-api-deployment.yaml
+    - --filename=k8s/payments-api-deployment.yaml
     - --location=us-central1-a
     - --cluster=pay-mta
