@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DSC-MtA/pay-mta-api#readme",
   "dependencies": {
-    "postgres-migrations": "^3.0.2"
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "^1.0.0"
   }
 }
