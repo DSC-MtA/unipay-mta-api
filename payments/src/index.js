@@ -14,4 +14,4 @@ app.use(bodyParser.json());
 
 router.init(app);
 
-app.listen(port, () => console.log(`auth api listening on port: ${port}...`));
+app.listen(port, () => console.log(`payments api listening on port: ${port}...`));
