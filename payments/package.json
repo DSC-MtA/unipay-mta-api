@@ -1,0 +1,22 @@
+{
+  "name": "pay-mta-payments-api",
+  "version": "0.0.1",
+  "description": "payments api",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DSC-MtA/pay-mta-api.git"
+  },
+  "author": "Eliot Scott",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.15.1"
+  }
+}

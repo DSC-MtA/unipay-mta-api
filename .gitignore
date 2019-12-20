@@ -1,0 +1,4 @@
+.idea
+auth/node_modules
+payments/node_modules
+migrator/node_modules
