@@ -1,41 +1,41 @@
 ---
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: "payments-api"
-  namespace: "default"
+  name: payments-api
+  namespace: default
   labels:
-    app: "payments-api"
+    app: payments-api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "payments-api"
+      app: payments-api
   template:
     metadata:
       labels:
-        app: "payments-api"
+        app: payments-api
     spec:
       containers:
-        - name: "payments-api"
-          image: "gcr.io/pay-mta/payments-api:latest"
+        - name: payments-api
+          image: gcr.io/pay-mta/payments-api:latest
 ---
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
 metadata:
-  name: "payments-api-hpa"
-  namespace: "default"
+  name: payments-api-hpa
+  namespace: default
   labels:
-    app: "payments-api"
+    app: payments-api
 spec:
   scaleTargetRef:
-    kind: "Deployment"
-    name: "payments-api"
-    apiVersion: "apps/v1"
+    kind: Deployment
+    name: payments-api
+    apiVersion: apps/v1
   minReplicas: 1
   maxReplicas: 5
   metrics:
-    - type: "Resource"
+    - type: Resource
       resource:
-        name: "cpu"
+        name: cpu
         targetAverageUtilization: 80

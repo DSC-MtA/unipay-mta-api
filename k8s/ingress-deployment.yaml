@@ -1,18 +1,18 @@
-apiVersion: "networking.k8s.io/v1beta1"
-kind: "Ingress"
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
-  name: "test-ingress"
+  name: test-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
-          - path: "/auth"
+          - path: /auth
             backend:
-              serviceName: "auth-api-service"
+              serviceName: auth-api-service
               servicePort: 80
-          - path: "/payments"
+          - path: /payments
             backend:
-              serviceName: "payments-api-service"
-              servicePort: "81"
+              serviceName: payments-api-service
+              servicePort: 81
