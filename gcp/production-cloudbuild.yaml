@@ -1,16 +1,8 @@
 steps:
-
-  ### Apply configs
-  - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['apply', '-f', '../k8s/' ]
-    env:
-    - 'CLOUDSD_CONTAINER_CLUSTER=pay-mta'
-    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-
-  #### update images in GKE
-  ## auth-api
-  - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['set', 'image', 'auth-api', 'auth-api=gcr.io/$PROJECT_ID/auth-api']
-    env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
+# deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy:stable"
+  args:
+    - run
+    - --filename=../k8s
+    - --location=us-central1-a
+    - --cluster=pay-mta

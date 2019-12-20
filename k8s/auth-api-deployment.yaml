@@ -1,0 +1,41 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "auth-api"
+  namespace: "default"
+  labels:
+    app: "auth-api"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "auth-api"
+  template:
+    metadata:
+      labels:
+        app: "auth-api"
+    spec:
+      containers:
+        - name: "auth-api-sha256"
+          image: "gcr.io/pay-mta/auth-api@sha256:22434eb1345f5a01b211d74d742bd6a551a11fb17ddb34c982ef7b3f82f2b265"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "auth-api-hpa"
+  namespace: "default"
+  labels:
+    app: "auth-api"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "auth-api"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: "Resource"
+      resource:
+        name: "cpu"
+        targetAverageUtilization: 80
