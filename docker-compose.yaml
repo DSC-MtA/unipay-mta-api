@@ -31,7 +31,6 @@ services:
       PGUSER: user
       PGPASSWORD: password
       PGDATABASE: dev
-      MIGRATIONS: file:///app/migrations
     networks:
       - mta-pay-net
     ports:
@@ -57,11 +56,33 @@ services:
       PGUSER: user
       PGPASSWORD: password
       PGDATABASE: dev
-      MIGRATIONS: file:///app/migrations
     networks:
       - mta-pay-net
     ports:
       - 9090:9090
+    depends_on:
+      - mta-pay-db
+    links:
+      - mta-pay-db
+    labels:
+      kompose.service.type: LoadBalancer
+
+  mta-pay-migrator:
+    container_name: mta-pay-migrator
+    image: escott07/mta-pay-migrator:latest
+    hostname: mta-pay-api
+    build:
+      context: migrator/
+      dockerfile: Dockerfile
+    environment:
+      GET_HOSTS_FROM: dns
+      PGHOST: mta-pay-db
+      PGPORT: 5432
+      PGUSER: user
+      PGPASSWORD: password
+      PGDATABASE: dev
+    networks:
+      - mta-pay-net
     depends_on:
       - mta-pay-db
     links:

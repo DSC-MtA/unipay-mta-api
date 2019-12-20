@@ -1,0 +1,23 @@
+{
+  "name": "migrator",
+  "version": "0.0.1",
+  "description": "pay-mta migrator",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSC-MtA/pay-mta-api.git"
+  },
+  "author": "Eliot Scott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DSC-MtA/pay-mta-api/issues"
+  },
+  "homepage": "https://github.com/DSC-MtA/pay-mta-api#readme",
+  "dependencies": {
+    "postgres-migrations": "^3.0.2"
+  }
+}
