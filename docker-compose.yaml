@@ -2,11 +2,11 @@ version: '3'
 
 services:
 
-  mta-pay-db:
-    container_name: mta-pay-db
+  pay-mta-db:
+    container_name: pay-mta-db
     image: postgres
     restart: always
-    hostname: mta-pay-db
+    hostname: pay-mta-db
     environment:
       GET_HOST_FROM: dns
       POSTGRES_DB: dev
@@ -15,81 +15,81 @@ services:
     ports:
       - 5432:5432
     networks:
-      - mta-pay-net
+      - pay-mta-net
 
-  mta-pay-auth-api:
-    container_name: mta-pay-auth-api
-    image: escott07/mta-pay-auth-api:latest
-    hostname: mta-pay-api
+  pay-mta-auth-api:
+    container_name: pay-mta-auth-api
+    image: escott07/pay-mta-auth-api:latest
+    hostname: pay-mta-api
     build:
       context: auth/
       dockerfile: Dockerfile
     environment:
       GET_HOSTS_FROM: dns
-      PGHOST: mta-pay-db
+      PGHOST: pay-mta-db
       PGPORT: 5432
       PGUSER: user
       PGPASSWORD: password
       PGDATABASE: dev
     networks:
-      - mta-pay-net
+      - pay-mta-net
     ports:
       - 8080:8080
     depends_on:
-      - mta-pay-db
+      - pay-mta-db
     links:
-      - mta-pay-db
+      - pay-mta-db
     labels:
       kompose.service.type: LoadBalancer
 
-  mta-pay-payments-api:
-    container_name: mta-pay-payments-api
-    image: escott07/mta-pay-payments-api:latest
-    hostname: mta-pay-api
+  pay-mta-payments-api:
+    container_name: pay-mta-payments-api
+    image: escott07/pay-mta-payments-api:latest
+    hostname: pay-mta-api
     build:
       context: payments/
       dockerfile: Dockerfile
     environment:
       GET_HOSTS_FROM: dns
-      PGHOST: mta-pay-db
+      PGHOST: pay-mta-db
       PGPORT: 5432
       PGUSER: user
       PGPASSWORD: password
       PGDATABASE: dev
     networks:
-      - mta-pay-net
+      - pay-mta-net
     ports:
       - 9090:9090
     depends_on:
-      - mta-pay-db
+      - pay-mta-db
     links:
-      - mta-pay-db
+      - pay-mta-db
     labels:
       kompose.service.type: LoadBalancer
 
-  mta-pay-migrator:
-    container_name: mta-pay-migrator
-    image: escott07/mta-pay-migrator:latest
-    hostname: mta-pay-api
+  pay-mta-migrator:
+    container_name: pay-mta-migrator
+    image: escott07/pay-mta-migrator:latest
+    hostname: pay-mta-api
     build:
       context: migrator/
       dockerfile: Dockerfile
     environment:
       GET_HOSTS_FROM: dns
-      PGHOST: mta-pay-db
+      PGHOST: pay-mta-db
       PGPORT: 5432
       PGUSER: user
       PGPASSWORD: password
       PGDATABASE: dev
     networks:
-      - mta-pay-net
+      - pay-mta-net
     depends_on:
-      - mta-pay-db
+      - pay-mta-db
     links:
-      - mta-pay-db
+      - pay-mta-db
     labels:
       kompose.service.type: LoadBalancer
 
 networks:
-  mta-pay-net:
+  pay-mta-net:
     driver: bridge
