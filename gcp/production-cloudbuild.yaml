@@ -27,19 +27,7 @@ steps:
   #### update images in GKE
   ## auth-api
   - name: 'gcr.io/cloud-builders/kubectl'
-    args: [ 'set', 'image','deployment','auth-api','auth-api=gcr.io/$PROJECT_ID/auth-api:latest' ]
+    args: ['set', 'image', 'auth-api', 'auth-api=gcr.io/$PROJECT_ID/auth-api']
     env:
-    - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
-  images: [
-    'gcr.io/$PROJECT_ID/auth-api:latest'
-  ]
-  ## payments-api
-  - name: 'gcr.io/cloud-builders/kubectl'
-      args: [ 'set', 'image','deployment','payments-api','payments-api=gcr.io/$PROJECT_ID/payments-api:latest' ]
-      env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
-  images: [
-    'gcr.io/$PROJECT_ID/payments-api:latest'
-  ]
