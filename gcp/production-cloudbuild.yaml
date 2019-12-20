@@ -1,0 +1,39 @@
+steps:
+
+  ### Build images
+  ## auth-api
+  #1
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/auth-api:latest || exit 0' ]
+  #2
+  - name: gcr.io/cloud-builders/docker
+    args: [ 'build','-t','gcr.io/$PROJECT_ID/auth-api:latest','-t','gcr.io/$PROJECT_ID/auth-api:latest','.' ]
+  # payments-api
+  #1
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/payments-api:latest || exit 0' ]
+  #2
+  - name: gcr.io/cloud-builders/docker
+    args: [ 'build','-t','gcr.io/$PROJECT_ID/payments-api:latest','-t','gcr.io/$PROJECT_ID/payments-api:latest','.' ]
+
+  ### Apply configs
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', '../k8s/' ]
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+
+  #### update images in GKE
+  ## auth-api
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: [ 'set', 'image','deployment','auth-api','auth-api=gcr.io/$PROJECT_ID/auth-api:latest' ]
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
+  ## payments-api
+  - name: 'gcr.io/cloud-builders/kubectl'
+      args: [ 'set', 'image','deployment','payments-api','payments-api=gcr.io/$PROJECT_ID/payments-api:latest' ]
+      env:
+        - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+        - 'CLOUDSDK_CONTAINER_CLUSTER=pay-mta'
