@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pay-mta-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /auth
+            backend:
+              serviceName: auth-api-loadbalancer
+              servicePort: 80
+          - path: /payments
+            backend:
+              serviceName: payments-api-loadbalancer
+              servicePort: 90
