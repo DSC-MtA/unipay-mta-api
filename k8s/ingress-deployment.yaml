@@ -10,9 +10,9 @@ spec:
         paths:
           - path: /auth
             backend:
-              serviceName: auth-api-loadbalancer
-              servicePort: 80
+              serviceName: auth-api-service
+              servicePort: 8080
           - path: /payments
             backend:
-              serviceName: payments-api-loadbalancer
-              servicePort: 90
+              serviceName: payments-api-service
+              servicePort: 9090
