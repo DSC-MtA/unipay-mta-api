@@ -4,7 +4,7 @@ metadata:
   name: pay-mta-ingress
   namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
