@@ -39,20 +39,3 @@ spec:
       resource:
         name: cpu
         targetAverageUtilization: 90
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: payments-api-service
-  namespace: default
-  labels:
-    app: payments-api
-    app.kubernetes.io/managed-by: gcp-cloud-build-deploy
-spec:
-  ports:
-    - protocol: TCP
-      port: 9090
-      targetPort: 9090
-  selector:
-    app: payments-api
-  type: LoadBalancer
