@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pay-mta-ingress
+  namespace: default
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /auth
+            backend:
+              serviceName: auth-api-service
+              servicePort: 8080
+          - path: /payment
+            backend:
+              serviceName: payments-api-service
+              servicePort: 9090
