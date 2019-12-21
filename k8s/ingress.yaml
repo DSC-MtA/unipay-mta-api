@@ -3,9 +3,6 @@ kind: Ingress
 metadata:
   name: pay-mta-ingress
   namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($request_uri = '/?%payments') { rewrite /(.*) payments/$1 break; }
 spec:
   rules:
     - http:
@@ -14,6 +11,8 @@ spec:
             backend:
               serviceName: auth-api-service
               servicePort: 8080
+    - http:
+        paths:
           - path: /payments
             backend:
               serviceName: payments-api-service
