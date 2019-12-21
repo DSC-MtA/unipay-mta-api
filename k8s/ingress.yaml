@@ -3,13 +3,11 @@ kind: Ingress
 metadata:
   name: pay-mta-ingress
   namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
-          - path: /auth/*
+          - path: /*
             backend:
               serviceName: auth-api-service
               servicePort: 8080
