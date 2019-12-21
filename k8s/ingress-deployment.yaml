@@ -2,8 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: pay-mta-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: default
 spec:
   rules:
     - http:
@@ -12,7 +11,7 @@ spec:
             backend:
               serviceName: auth-api-service
               servicePort: 8080
-          - path: /payments
+          - path: /payment
             backend:
               serviceName: payments-api-service
               servicePort: 9090
