@@ -1,18 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: pay-mta-ingress
   namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
-          - path: /*
+          - path: /auth/*
             backend:
               serviceName: auth-api-service
               servicePort: 8080
-    - http:
-        paths:
           - path: /payments/*
             backend:
               serviceName: payments-api-service
