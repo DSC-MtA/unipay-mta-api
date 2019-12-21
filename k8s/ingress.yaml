@@ -13,6 +13,8 @@ spec:
             backend:
               serviceName: auth-api-service
               servicePort: 8080
+    - http:
+        paths:
           - path: /payments/*
             backend:
               serviceName: payments-api-service
