@@ -8,13 +8,13 @@ metadata:
     app: auth-api
     app.kubernetes.io/managed-by: gcp-cloud-build-deploy
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
   selector:
     app: auth-api
-  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -25,10 +25,10 @@ metadata:
     app: payments-api
     app.kubernetes.io/managed-by: gcp-cloud-build-deploy
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 9090
       targetPort: 9090
   selector:
     app: payments-api
-  type: LoadBalancer

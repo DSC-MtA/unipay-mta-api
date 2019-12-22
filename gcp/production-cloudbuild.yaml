@@ -7,6 +7,10 @@ steps:
     - --location=us-central1-a
     - --cluster=pay-mta
     - run
+      - --filename=k8s/services.yaml
+      - --location=us-central1-a
+      - --cluster=pay-mta
+    - run
     - --filename=k8s/ingress.yaml
     - --location=us-central1-a
     - --cluster=pay-mta
