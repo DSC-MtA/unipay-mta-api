@@ -19,6 +19,7 @@ spec:
       containers:
         - name: auth-api
           image: gcr.io/pay-mta/auth-api:latest
+          imagePullPolicy: IfNotPresent
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
@@ -60,6 +61,7 @@ spec:
       containers:
         - name: payments-api
           image: gcr.io/pay-mta/payments-api:latest
+          imagePullPolicy: IfNotPresent
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
