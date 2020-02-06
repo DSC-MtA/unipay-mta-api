@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: payments-api
-          image: gcr.io/pay-mta/payments-api:latest
+          image: gcr.io/unipay-mta/payments-api:latest
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler

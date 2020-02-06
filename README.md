@@ -9,8 +9,8 @@ API for handling payment records for the MountA University Club
 ### Testing
 Clone this repository into your workspace, and enter its directory
 ```bash
-git clone https://github.com/DSC-MtA/pay-mta-api.git
-cd pay-mta-api
+git clone https://github.com/DSC-MtA/unipay-mta-api.git
+cd unipay-mta-api
 ```
 
 Finally, run docker-compose

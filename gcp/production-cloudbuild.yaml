@@ -5,8 +5,8 @@ steps:
     - run
     - --filename=k8s/auth-api-deployment.yaml
     - --location=us-central1-a
-    - --cluster=pay-mta
+    - --cluster=unipay-mta
     - run
     - --filename=k8s/payments-api-deployment.yaml
     - --location=us-central1-a
-    - --cluster=pay-mta
+    - --cluster=unipay-mta

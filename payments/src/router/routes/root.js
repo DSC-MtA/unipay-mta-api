@@ -4,6 +4,6 @@ const router = express.Router();
 const handlers = require('../handlers/root');
 
 router.get('/', handlers.helloPayments);
-router.get('/test', handlers.test);
+router.get('/hello', handlers.test);
 
 module.exports = router;

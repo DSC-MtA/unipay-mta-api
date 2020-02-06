@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: pay-mta-ingress
+  name: unipay-mta-ingress
   namespace: default
 spec:
   rules:

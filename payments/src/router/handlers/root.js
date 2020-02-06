@@ -3,7 +3,7 @@ let helloPayments = async (req, res) => {
 }
 
 let test = async (req, res) => {
-    res.send('<html><body><h1>Testing the router</h1></body></html>');
+    res.send('<html><body><h1>Testing Hello!</h1></body></html>');
 }
 
 module.exports = {
