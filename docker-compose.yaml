@@ -11,16 +11,16 @@ services:
       GET_HOST_FROM: dns
       POSTGRES_DB: dev
       POSTGRES_USER: user
-      POSTGRES_PASWORD: password
+      POSTGRES_PASSWORD: password
     ports:
       - 5432:5432
     networks:
       - unipay-mta-net
 
-  unipay-mta-auth-api:
-    container_name: unipay-mta-auth-api
-    image: escott07/unipay-mta-auth-api:latest
-    hostname: unipay-mta-api
+  auth-api:
+    container_name: auth-api
+    image: auth-api:latest
+    hostname: auth-api
     build:
       context: auth/
       dockerfile: Dockerfile
@@ -42,10 +42,10 @@ services:
     labels:
       kompose.service.type: LoadBalancer
 
-  unipay-mta-payments-api:
-    container_name: unipay-mta-payments-api
-    image: escott07/unipay-mta-payments-api:latest
-    hostname: unipay-mta-api
+  payments-api:
+    container_name: payments-api
+    image: payments-api:latest
+    hostname: payments-api
     build:
       context: payments/
       dockerfile: Dockerfile
@@ -67,10 +67,10 @@ services:
     labels:
       kompose.service.type: LoadBalancer
 
-  unipay-mta-migrator:
-    container_name: unipay-mta-migrator
-    image: escott07/unipay-mta-migrator:latest
-    hostname: unipay-mta-api
+  migrator:
+    container_name: migrator
+    image: migrator:latest
+    hostname: migrator
     build:
       context: migrator/
       dockerfile: Dockerfile

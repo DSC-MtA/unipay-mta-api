@@ -1,22 +1,16 @@
 {
   "name": "migrator",
   "version": "0.0.1",
-  "description": "unipay-mta migrator",
-  "main": "src/index.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DSC-MtA/unipay-mta-api.git"
+    "url": "git+https://github.com/dsc-mta/unipay-api.git"
   },
-  "author": "Eliot Scott",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DSC-MtA/unipay-mta-api/issues"
-  },
-  "homepage": "https://github.com/DSC-MtA/unipay-mta-api#readme",
   "dependencies": {
     "db-migrate": "^0.11.6",
     "db-migrate-pg": "^1.0.0"
