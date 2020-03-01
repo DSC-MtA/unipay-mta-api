@@ -1,1 +1,1 @@
-# unipay-mta-migrator
+# unipay-migrator

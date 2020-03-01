@@ -4,8 +4,12 @@ const dbm = DBMigrate.getInstance(true);
 function migrateUp(){
     console.log('running migrations [up]...');
     dbm.reset()
-        .then(() => dbm.up());
-    console.log('successfully ran migrations [up]...');
+        .then(() => {
+            dbm.up();
+            console.log('successfully ran migrations [up]...');
+        }).catch(err => {
+            console.error('Error running migrations:', err);
+    });
 }
 
 // Wait for database to start up, then run migrations
